@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 mod utils;
 
 use wasm_bindgen::prelude::*;
