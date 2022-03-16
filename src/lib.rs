@@ -1,43 +1,17 @@
 #![allow(dead_code)]
-mod utils;
 
 use wasm_bindgen::prelude::*;
 
-// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
-// allocator.
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+mod utils;
 
-// How to get js INTO rust 
 #[wasm_bindgen]
-extern {
-    fn alert(s: &str);
+extern "C" {
+    // fn alert(s: &str);
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
 }
 
-// How to get Rust INTO js 
-#[wasm_bindgen]
-pub fn greet() {
-    alert("Hello, game-of-life!");
-}
-
-#[wasm_bindgen]
-pub fn add(a: f32, b: f32) -> f32 {
-    return a + b;
-}
-
-#[wasm_bindgen]
-pub fn testietestie(kaas: f32, b: f32, c: f32) -> f32 {
-    return kaas + b * c;
-}
-
-#[wasm_bindgen]
-pub fn subtract(a: f32, b: f32) -> f32 {
-    return a - b;
-}
-
-#[wasm_bindgen]
-pub fn get_list(a: f32, length: usize) -> Vec<f32> {
-    let arr = vec![a; length];
-    return arr;
+#[wasm_bindgen(start)]
+pub fn start() {
+    utils::set_panic_hook();
 }
