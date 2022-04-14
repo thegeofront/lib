@@ -9,6 +9,31 @@ pub struct Vector {
     z: f64
 }
 
+// These functions have magic names, and we need them on the 
+// javascript side to make the flowchart work and operate smoothly
+#[wasm_bindgen] 
+impl Vector {
+    pub fn __get_type__() -> String {
+        "vector-3".into()
+    }
+
+    pub fn __from_json__(json: JsValue) {
+        // TODO
+    }
+
+    pub fn __from_json_string__(str: String) {
+        // TODO   
+    }
+
+    pub fn __to_json__(&self) -> JsValue {
+        JsValue::from_serde(&self).unwrap()
+    }
+
+    pub fn __to_json_string__(&self) -> String {
+        serde_json::to_string(&self).unwrap()
+    }
+}
+
 #[wasm_bindgen]
 impl Vector {
 
@@ -18,13 +43,5 @@ impl Vector {
             y : y.unwrap_or(0.0), 
             z : z.unwrap_or(0.0)
         }
-    }
-
-    pub fn to_json(&self) -> JsValue {
-        JsValue::from_serde(&self).unwrap()
-    }
-
-    pub fn to_json_string(&self) -> String {
-        serde_json::to_string(&self).unwrap()
     }
 }
