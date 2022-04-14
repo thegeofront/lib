@@ -1,0 +1,30 @@
+use serde::{Serialize, Deserialize};
+use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
+
+#[wasm_bindgen]
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Vector {
+    x: f64,
+    y: f64,
+    z: f64
+}
+
+#[wasm_bindgen]
+impl Vector {
+
+    pub fn new(x: Option<f64>, y: Option<f64>, z: Option<f64>) -> Self {
+        Vector {
+            x : x.unwrap_or(0.0), 
+            y : y.unwrap_or(0.0), 
+            z : z.unwrap_or(0.0)
+        }
+    }
+
+    pub fn to_json(&self) -> JsValue {
+        JsValue::from_serde(&self).unwrap()
+    }
+
+    pub fn to_json_string(&self) -> String {
+        serde_json::to_string(&self).unwrap()
+    }
+}

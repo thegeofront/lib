@@ -1,4 +1,5 @@
-
+# Geofront Standard Library
+https://github.com/rustwasm/wasm-pack-template
 
 build with
 ```

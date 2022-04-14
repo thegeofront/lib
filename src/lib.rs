@@ -2,7 +2,13 @@
 
 use wasm_bindgen::prelude::*;
 
+mod vector_0;
+
+pub use crate::vector_0::{Point, Vector};
+
 mod utils;
+
+
 
 #[wasm_bindgen]
 extern "C" {
