@@ -1,3 +1,6 @@
 // maths
-mod boolean;
-pub use boolean::Boolean;
+mod basics;
+mod logic;
+
+pub use basics::Basics;
+pub use logic::Logic;

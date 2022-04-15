@@ -4,6 +4,12 @@
 - just a namespace with functions? still expose it like an object, for easy js <--> rust translation
 - break all these rules rather than doing something really stupid
 
+
+# At Javascript 
+- Widgets 
+- Types & basic type conversion
+- 
+
 =========================================================================================
 
 # Lets create the basics of all these categories

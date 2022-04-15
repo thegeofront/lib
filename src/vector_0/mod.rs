@@ -1,4 +1,5 @@
 mod point;
-pub use point::Point;
 mod vector;
+
+pub use point::Point;
 pub use vector::Vector;
