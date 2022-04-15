@@ -1,4 +1,12 @@
-Lets create the basics of all these categories
+# DESIGN RULES 
+- only 3 levels, not deeper 
+- use static methods over normal methods
+- just a namespace with functions? still expose it like an object, for easy js <--> rust translation
+- break all these rules rather than doing something really stupid
+
+=========================================================================================
+
+# Lets create the basics of all these categories
 
 # Widgets ( At Geofront )
 L Display [X]
@@ -6,11 +14,11 @@ L Inputs [X]
 L IO [X] 
 L Scriptable (js) [ ]
 
-# Types [ ] 
+# Types [ ] ( I THINK THIS SHOULD ALSO BE DONE AT THE GEOFRONT SIDE OF THINGS )
 L All Types [ ]
 L From Json / To Json [ ]
 
-# Sets [ ]
+# Data [ ]
 L Sequencing / Traversal [ ]
 L List [ ]
 L Table [ ]

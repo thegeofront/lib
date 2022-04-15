@@ -17,11 +17,11 @@ impl Vector {
         "vector-3".into()
     }
 
-    pub fn __from_json__(json: JsValue) {
+    pub fn __from_json__(_json: JsValue) {
         // TODO
     }
 
-    pub fn __from_json_string__(str: String) {
+    pub fn __from_json_string__(_str: String) {
         // TODO   
     }
 

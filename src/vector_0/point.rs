@@ -1,7 +1,7 @@
 use serde::{Serialize, Deserialize};
 use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
 
-#[wasm_bindgen]
+#[wasm_bindgen(inspectable)]
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Point {
     x: f64,
