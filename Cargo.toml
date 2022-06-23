@@ -1,6 +1,6 @@
 [package]
-name = "wasm-nodes"
-version = "0.1.0"
+name = "geofront"
+version = "0.1.1"
 authors = ["josfeenstra <me@josfeenstra.nl>"]
 edition = "2018"
 
