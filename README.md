@@ -1,4 +1,6 @@
-# `gflib`: Geofront Library
+# The Geofront Library
+This houses the geofront standard library. 
+
 
 ## Usage
 - 🛠️ Build with `wasm-pack build`
