@@ -13,6 +13,7 @@ mod vector_0;
 mod vector_1;
 mod vector_2;
 mod vector_3;
+mod gfbind;
 
 pub use crate::data::*;
 pub use crate::maths::*;
@@ -24,6 +25,7 @@ pub use crate::vector_0::*;
 pub use crate::vector_1::*;
 pub use crate::vector_2::*;
 pub use crate::vector_3::*;
+pub use crate::gfbind::*;
 
 // the setup for wasm loading
 mod utils;
@@ -34,7 +36,7 @@ extern "C" {
     fn log(s: &str);
 }
 
-#[wasm_bindgen(start)]
+#[wasm_bindgen(start, skip_typescript)]
 pub fn start() {
     utils::set_panic_hook();
 }
