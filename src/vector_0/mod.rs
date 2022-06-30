@@ -1,7 +1,9 @@
 mod point;
-mod multi_point;
+mod multipoint;
+mod pointcloud;
 mod vector;
 
 pub use point::Point;
-pub use multi_point::MultiPoint;
+pub use multipoint::MultiPoint;
+pub use pointcloud::Pointcloud;
 pub use vector::Vector;
