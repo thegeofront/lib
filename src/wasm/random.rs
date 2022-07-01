@@ -27,20 +27,13 @@ impl Random {
         Random {rng}
     }
 
-    pub fn spawn_points(&mut self, count: usize, bounds: Option<WasmBoundingBox>) -> MultiPoint {
+    pub fn spawn_points(&mut self, count: usize, bounds: &mut WasmBoundingBox) -> MultiPoint {
         
-        let bb = match bounds {
-            None => WasmBoundingBox::new_from_bounds(
-                0.0,0.0,0.0,
-                1.0,1.0,1.0),
-            Some(x) => x
-        };
-
         let mut results = Vec::with_capacity(count*3);
         let r = &mut self.rng;
 
         for _ in 0..count {
-            let point = bb.data.elevate(DVec3::new(r.gen(), r.gen(), r.gen()));
+            let point = bounds.data.elevate(DVec3::new(r.gen(), r.gen(), r.gen()));
             results.push(point.x);
             results.push(point.y);
             results.push(point.z);
