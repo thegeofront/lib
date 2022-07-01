@@ -1,3 +1,7 @@
+/**
+ * Basic rng
+ */
+
 pub struct Random {
     a: u32,
     b: u32,

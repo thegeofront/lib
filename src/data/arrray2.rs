@@ -1,26 +1,24 @@
-
 use wasm_bindgen::prelude::*;
-use wasm_bindgen::convert::RefFromWasmAbi;
 
-// #[wasm_bindgen(inspectable)]
-pub struct MultiPoint {
-    pub vertices: Box<Vec<f64>>
-}
-
+/**
+ * A generic two dimensional array / matrix.
+ * NOTE: using 'array2' instead of 2dVec or Matrix or something, to not confuse this one with Matrix4 and Vec3 types.  
+ * NOTE: under construction
+ */
 #[wasm_bindgen(inspectable)]
-pub struct Matrix {
+pub struct Array2 {
     pub width: usize,
     pub height: usize,
     d: Vec<f64>
 }
 
-impl Matrix {
+impl Array2 {
 
-    pub fn new_from_vec_2d(vec: Vec<Vec<f64>>) -> Matrix {
+    pub fn new_from_vec_2d(vec: Vec<Vec<f64>>) -> Self {
         assert!(vec.len() > 0 && vec[0].len() > 0);
         let height = vec.len();
         let width = vec[0].len(); 
-        let mut matrix = Matrix::new(width, height);
+        let mut matrix = Self::new(width, height);
         matrix.fill(vec);
         matrix
     }
@@ -37,12 +35,12 @@ impl Matrix {
 }
 
 // #[wasm_bindgen]
-impl Matrix {
+impl Array2 {
 
-    pub fn new(width: usize, height: usize) -> Matrix {
+    pub fn new(width: usize, height: usize) -> Self {
 
         let d = vec![0.0; width * height];
-        Matrix {width, height, d}
+        Self {width, height, d}
     }
 
     pub fn get_some(&mut self, b: bool) {
@@ -50,16 +48,10 @@ impl Matrix {
         // vec![JsValue::from_str("GFPoint"), arr].into_boxed_slice()
     }
 
-    pub fn to_multipoint_3(&self) -> MultiPoint {
-        assert!(self.width == 3);
-
-        MultiPoint::new(self.d.clone())
-    }
-
-    pub fn new_from_vec(vec: Vec<f64>, width: usize) -> Matrix {
+    pub fn new_from_vec(vec: Vec<f64>, width: usize) -> Self {
         assert!(vec.len() % width == 0);
         let height = vec.len() / width;
-        Matrix {width, height, d: vec}
+        Self {width, height, d: vec}
     }
 
     pub fn set(&mut self, row: usize, col: usize, value: f64) -> bool {
@@ -89,7 +81,6 @@ impl Matrix {
     }
 }
 
-#[wasm_bindgen]
 pub fn points(a: bool) -> Vec<f64> {
 
     let mut pts: Vec<Vec<f64>> = Vec::new();
@@ -103,5 +94,5 @@ pub fn points(a: bool) -> Vec<f64> {
         pts.push(vec![60.0, 70.0, 33.0]);
     }
 
-    Matrix::new_from_vec_2d(pts).to_vec()
+    Array2::new_from_vec_2d(pts).to_vec()
 }

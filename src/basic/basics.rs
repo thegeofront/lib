@@ -1,11 +1,11 @@
-// sin cos tan
+/**
+ * The basics of the basic mathematics
+ */
 use wasm_bindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]
 pub struct Basics {}
 
-// These functions have magic names, and we need them on the 
-// javascript side to make the flowchart work and operate smoothly
 #[wasm_bindgen] 
 impl Basics {
     pub fn add(a: f64, b: f64) -> f64 { a + b }

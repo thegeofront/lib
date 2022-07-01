@@ -1,25 +1,26 @@
-mod point_buffer;
-pub use point_buffer::*;
+mod shader_buffers;
+pub use shader_buffers::*;
 
 use wasm_bindgen::prelude::wasm_bindgen;
 
 // order is important!
-#[wasm_bindgen]
-pub enum GeoShaderType {
-    PointShader,
-    MultiPointShader,
-    BoundingBox,
-}
+
 
 // the geofront type
 #[wasm_bindgen]
 pub enum GeoType {
+
+    
     Void,
     Int,
     Float,
+    
     Point,
     Vector,
     Plane,
+    Transform,
+
+
     MultiPoint,
     Json,
 }
