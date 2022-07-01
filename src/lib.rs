@@ -2,29 +2,29 @@
 
 use wasm_bindgen::prelude::*;
 
+// these things are so common and 'basic' in a sense, that I think the lowercase stuff is justified
+pub use glam::{DAffine2 as aff2};
+pub use glam::{DAffine3 as aff3};
+pub use glam::{DMat3 as mat3};
+pub use glam::{DMat4 as mat4};
+pub use glam::{DQuat as quad};
+pub use glam::{DVec2 as vec2};
+pub use glam::{DVec3 as vec3};
+
 // all exports 
-mod data;
+mod algorithms;
 mod basic;
+mod data;
 mod misc;
 mod raster;
-mod geo_point;
-mod geo_line;
-mod geo_srf;
-mod geo_solid;
-mod gfbind;
 
 pub use crate::data::*;
 pub use crate::basic::*;
 pub use crate::misc::*;
 pub use crate::raster::*;
-pub use crate::geo_point::*;
-pub use crate::geo_line::*;
-pub use crate::geo_srf::*;
-pub use crate::geo_solid::*;
-pub use crate::gfbind::*;
 
 // the setup for wasm loading
-mod wasm_util;
+mod wasm;
 
 #[wasm_bindgen]
 extern "C" {
@@ -35,5 +35,5 @@ extern "C" {
 
 #[wasm_bindgen(start, skip_typescript)]
 pub fn start() {
-    wasm_util::set_panic_hook();
+    crate::wasm::bindings::set_panic_hook();
 }

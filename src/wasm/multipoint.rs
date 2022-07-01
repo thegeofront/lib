@@ -1,7 +1,6 @@
-use serde_json::json;
 use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
 
-use crate::{BoundingBox, GeoShaderType, Pointcloud, PointBuffer, MultiPointBuffer};
+use crate::wasm::{pointcloud::Pointcloud, Point, wasm_bounding_box::WasmBoundingBox, bindings::{GeoShaderType, MultiPointBuffer}};
 
 #[wasm_bindgen]
 pub struct MultiPoint {
@@ -24,10 +23,10 @@ impl MultiPoint {
         Self::new_from_array(pc.to_array())
     }
 
-    pub fn push_pt(&mut self, pt: crate::Point) {
-        self.data.push(pt.p.x);
-        self.data.push(pt.p.y);
-        self.data.push(pt.p.z);
+    pub fn push_pt(&mut self, pt: Point) {
+        self.data.push(pt.data.x);
+        self.data.push(pt.data.y);
+        self.data.push(pt.data.z);
     }
 
     pub fn add_num(&mut self, x: f64, y: f64, z: f64) {
@@ -43,8 +42,8 @@ impl MultiPoint {
         self.data.clone()
     }
 
-    pub fn calc_bounding_box(&self) -> BoundingBox {
-        BoundingBox::new_default()
+    pub fn calc_bounding_box(&self) -> WasmBoundingBox {
+        WasmBoundingBox::new(Point::new(0.0,0.0,0.0), Point::new(1.0,1.0,1.0))
     }
 
 }
@@ -57,7 +56,7 @@ impl MultiPoint {
     }
 
     pub fn gf_get_shader_type() -> GeoShaderType {
-        GeoShaderType::MultiPointShader
+        GeoShaderType::MultiPoint
     }
 
     pub fn gf_get_bounding_box(&self) -> JsValue {

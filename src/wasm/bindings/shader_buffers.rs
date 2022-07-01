@@ -2,11 +2,12 @@
 use serde::{Serialize, Deserialize};
 use wasm_bindgen::prelude::wasm_bindgen;
 
+// order is important!
 #[wasm_bindgen]
 pub enum GeoShaderType {
-    PointShader=0,
-    MultiPointShader=1,
-    PointCloudShader=2,
+    Point=0,
+    MultiPoint=1,
+    PointCloud=2,
     BoundingBox=3,
     Plane=4,
     Mesh=5,

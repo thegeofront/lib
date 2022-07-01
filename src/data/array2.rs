@@ -43,7 +43,7 @@ impl Array2 {
         Self {width, height, d}
     }
 
-    pub fn get_some(&mut self, b: bool) {
+    pub fn get_some(&mut self) {
         // let arr = JsValue::from(self.to_vec());
         // vec![JsValue::from_str("GFPoint"), arr].into_boxed_slice()
     }

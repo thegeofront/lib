@@ -1,5 +1,6 @@
-pub struct BoundingRect {
-    from: (f64, f64),
-    to: (f64, f64),
-}
+use crate::vec2;
 
+pub struct BoundingRect {
+    min: vec2,
+    max: vec2,
+}

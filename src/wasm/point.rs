@@ -3,10 +3,10 @@ use serde::{Serialize, Deserialize};
 use serde_json::json;
 use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
 
-use crate::{GeoShaderType, PointBuffer, GeoType};
-
 // use glam for the vector business
 use glam::DVec3 as vec3;
+
+use crate::wasm::bindings::{GeoType, GeoShaderType, PointBuffer};
 
 #[derive(Serialize, Deserialize)]
 #[wasm_bindgen()]
@@ -14,20 +14,20 @@ use glam::DVec3 as vec3;
 pub struct Point {
 
     #[wasm_bindgen(skip)]
-    pub p: vec3
+    pub data: vec3
 }
 
 #[wasm_bindgen]
 impl Point {
     
     pub fn new(x: f64, y: f64, z: f64) -> Point {
-        Point { p: vec3::new(x, y, z) }
+        Point { data: vec3::new(x, y, z) }
     }
 
     pub fn add_num(&mut self, x: f64, y: f64, z: f64) {
-        self.p.x += x;
-        self.p.y += y;
-        self.p.z += z;
+        self.data.x += x;
+        self.data.y += y;
+        self.data.z += z;
     }
 }
  
@@ -47,11 +47,11 @@ impl Point {
         }
     }
     pub fn gf_default() -> Self {
-        Point { p: vec3::ZERO.clone() }
+        Point { data: vec3::ZERO.clone() }
     }
 
     pub fn gf_to_json(&self) -> JsValue {
-        JsValue::from_serde(&self.p).unwrap()
+        JsValue::from_serde(&self.data).unwrap()
     }
 
     pub fn gf_from_json(val: &JsValue) -> Self {
@@ -68,26 +68,26 @@ impl Point {
     }
 
     pub fn gf_get_shader_type() -> GeoShaderType {
-        GeoShaderType::PointShader
+        GeoShaderType::Point
     }
 
     pub fn gf_get_bounding_box(&self) -> JsValue {
         let value = json!({
-            "xa": self.p.x,
-            "ya": self.p.y,
-            "za": self.p.z,
-            "xb": self.p.x,
-            "yb": self.p.y,
-            "zb": self.p.z,
+            "xa": self.data.x,
+            "ya": self.data.y,
+            "za": self.data.z,
+            "xb": self.data.x,
+            "yb": self.data.y,
+            "zb": self.data.z,
         });
         JsValue::from_serde(&value).unwrap()
     }
 
     pub fn gf_get_buffers(&self) -> JsValue {
         let buffer = PointBuffer {
-            x: self.p.x,
-            y: self.p.y,
-            z: self.p.z,
+            x: self.data.x,
+            y: self.data.y,
+            z: self.data.z,
         };
         JsValue::from_serde(&buffer).unwrap()
     }
@@ -129,9 +129,9 @@ impl Point {
 
     pub fn gf_get_item(&self, index: usize) -> Option<f64> {
         match index {
-            0 => Some(self.p.x),
-            1 => Some(self.p.y),
-            2 => Some(self.p.z),
+            0 => Some(self.data.x),
+            1 => Some(self.data.y),
+            2 => Some(self.data.z),
             _ => None,
         }
     }

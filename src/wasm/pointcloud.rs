@@ -1,13 +1,7 @@
 use core::panic;
-
-use las::{self, Reader, Read, Version};
-
+use las::{self, Reader, Read};
 use std::{io::Cursor, convert::TryInto};
-
-use serde::{Serialize, Deserialize};
 use wasm_bindgen::{prelude::wasm_bindgen};
-
-use crate::MultiPoint;
 
 #[wasm_bindgen]
 #[derive(Debug)]

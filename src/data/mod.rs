@@ -2,6 +2,6 @@
  * Module: Basic data representation. 
  */
 
-mod arrray2;
+mod array2;
 
-pub use arrray2::Array2;
+pub use array2::Array2;
